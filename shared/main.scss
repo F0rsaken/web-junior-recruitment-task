@@ -1,0 +1,408 @@
+// ==========================================================================
+// Star Wars movies app — shared base styles
+// Framework-agnostic: plain CSS custom properties + classes, generated
+// from SCSS variables so any of the react/vue/vanilla implementations can
+// import this single file.
+// ==========================================================================
+
+@use "sass:math";
+
+// --------------------------------------------------------------------------
+// Rem base
+// --------------------------------------------------------------------------
+$base-rem-size: 10px;
+$base-font-size: 1.6rem;
+
+// --------------------------------------------------------------------------
+// Colors
+// --------------------------------------------------------------------------
+$color-text: #051014;
+$color-bg: #eee;
+$color-bg-secondary: #40758c;
+
+// NOTE: the brief specifies the nav background as #dee5e5 with #dee5e5 as
+// its text color, which would make the nav text invisible (same color on
+// itself). Using the dark text color as the nav background instead, with
+// #dee5e5 as the text on top of it, so the topbar stays legible. Swap the
+// two values below if a different pairing was intended.
+$color-bg-nav: #051014;
+$color-text-nav: #dee5e5;
+
+$color-accent-2: #ee6352;
+$color-accent-3: #af4d98;
+
+$color-surface: #ffffff;
+$color-border: rgba($color-text, 0.12);
+
+// --------------------------------------------------------------------------
+// Tokens
+// --------------------------------------------------------------------------
+:root {
+	--color-text: #{$color-text};
+	--color-bg: #{$color-bg};
+	--color-bg-nav: #{$color-bg-secondary};
+	--color-text-nav: #{$color-text-nav};
+	--color-accent-2: #{$color-accent-2};
+	--color-accent-3: #{$color-accent-3};
+	--color-surface: #{$color-surface};
+	--color-border: #{$color-border};
+
+	--font-family:
+		system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+		sans-serif;
+
+	// Layout width is a fixed page-shell dimension, not type-relative, so it
+	// stays in px rather than rem.
+	--container-width: 1200px;
+	--nav-height: 8rem;
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+	--shadow-md: 0 8px 20px rgba(0, 0, 0, 0.12);
+	--transition: 0.2s ease;
+}
+
+// --------------------------------------------------------------------------
+// Reset
+// --------------------------------------------------------------------------
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	height: 100%;
+	font-size: $base-rem-size;
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	min-height: 100%;
+	margin: 0;
+	font-family: var(--font-family);
+	font-size: $base-font-size;
+	line-height: 1.5;
+	color: var(--color-text);
+	background: var(--color-bg);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+figure,
+blockquote,
+dl,
+dd {
+	margin: 0;
+}
+
+ul,
+ol {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+img,
+picture,
+svg {
+	display: block;
+	max-width: 100%;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+	font: inherit;
+	color: inherit;
+}
+
+button {
+	cursor: pointer;
+	background: none;
+	border: none;
+}
+
+// --------------------------------------------------------------------------
+// Typography
+// --------------------------------------------------------------------------
+h1,
+h2,
+h3 {
+	font-weight: 700;
+	line-height: 1.2;
+}
+
+h1 {
+	font-size: 3.2rem;
+}
+
+h2 {
+	font-size: 2.4rem;
+}
+
+h3 {
+	font-size: 1.8rem;
+}
+
+// --------------------------------------------------------------------------
+// Layout
+// --------------------------------------------------------------------------
+
+main {
+	margin: 3.2rem;
+}
+
+.container {
+	width: 100%;
+	max-width: var(--container-width);
+	margin-inline: auto;
+	padding-inline: 2.4rem;
+}
+
+// --------------------------------------------------------------------------
+// Topbar navigation
+// --------------------------------------------------------------------------
+.topbar {
+	background: var(--color-bg-nav);
+	color: var(--color-text-nav);
+
+	.container {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		min-height: var(--nav-height);
+		gap: 1.6rem;
+	}
+
+	&__brand {
+		font-weight: 700;
+		font-size: 1.8rem;
+		color: var(--color-text-nav);
+	}
+
+	&__links {
+		display: flex;
+		align-items: center;
+		gap: 2.4rem;
+	}
+
+	a {
+		color: var(--color-text-nav);
+		font-weight: 500;
+		transition: color var(--transition);
+		font-size: 2rem;
+
+		&:hover,
+		&:focus-visible {
+			color: var(--color-accent-2);
+		}
+	}
+}
+
+// --------------------------------------------------------------------------
+// Movie tiles / grid
+// --------------------------------------------------------------------------
+.movie-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(220px, 1fr));
+	gap: 2.4rem;
+}
+
+.movie-tile {
+	display: flex;
+	flex-direction: column;
+	background: var(--color-surface);
+	border-radius: var(--radius-md);
+	box-shadow: var(--shadow-sm);
+	overflow: hidden;
+	transition:
+		transform var(--transition),
+		box-shadow var(--transition);
+
+	// &:hover,
+	// &:focus-visible {
+	//   transform: translateY(-4px);
+	//   box-shadow: var(--shadow-md);
+	// }
+
+	&__body {
+		padding: 3.2rem;
+		display: flex;
+		flex-direction: column;
+		gap: 1.6rem;
+	}
+
+	&__title {
+		font-size: 2.4rem;
+		font-weight: 700;
+	}
+
+	&__meta {
+		font-size: 1.4rem;
+		opacity: 0.7;
+	}
+
+	&__characters {
+		display: flex;
+		flex-direction: column;
+		gap: 0.8rem;
+		padding-top: 1.6rem;
+		border-top: 1px solid var(--color-border);
+
+		&-title {
+			font-size: 1.4rem;
+			font-weight: 700;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+			opacity: 0.6;
+		}
+
+		&-list {
+			display: flex;
+			flex-direction: column;
+			gap: 0.8rem;
+		}
+
+		&-list a {
+			display: inline-flex;
+			border-radius: 999px;
+
+			&:hover,
+			&:focus-visible {
+				.movie-tile__character {
+					background: $color-accent-3;
+					color: #fff;
+				}
+			}
+		}
+	}
+
+	&__character {
+		display: inline-flex;
+		align-items: center;
+		font-size: 1.4rem;
+		font-weight: 600;
+		padding: 0.4rem 1.2rem;
+		border-radius: 999px;
+		background: rgba($color-accent-3, 0.12);
+		color: $color-accent-3;
+		transition:
+			background var(--transition),
+			color var(--transition);
+	}
+}
+
+// --------------------------------------------------------------------------
+// Character detail
+// --------------------------------------------------------------------------
+.character {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 3.2rem;
+
+	&__details {
+		flex: 1 1 280px;
+	}
+
+	&__name {
+		margin-bottom: 2.4rem;
+	}
+
+	&__item {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+	}
+
+	&__list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+		gap: 1.6rem 2.4rem;
+	}
+
+	&__label {
+		font-size: 1.2rem;
+		text-transform: uppercase;
+		letter-spacing: 0.04em;
+		opacity: 0.6;
+	}
+
+	&__value {
+		font-size: 1.6rem;
+		font-weight: 600;
+	}
+}
+
+// --------------------------------------------------------------------------
+// Buttons & links
+// --------------------------------------------------------------------------
+.button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.8rem;
+	padding: 1rem 2rem;
+	border-radius: var(--radius-sm);
+	font-weight: 600;
+	color: #fff;
+	background: var(--color-accent-2);
+	transition: opacity var(--transition);
+
+	&:hover,
+	&:focus-visible {
+		opacity: 0.85;
+	}
+
+	&--secondary {
+		background: var(--color-accent-3);
+	}
+}
+
+// --------------------------------------------------------------------------
+// Status states (loading / error / empty)
+// --------------------------------------------------------------------------
+.status {
+	padding: 4.8rem 2.4rem;
+	text-align: center;
+	opacity: 0.7;
+
+	&--error {
+		color: var(--color-accent-2);
+		opacity: 1;
+	}
+}
+
+// --------------------------------------------------------------------------
+// Utilities
+// --------------------------------------------------------------------------
+.text-accent-2 {
+	color: var(--color-accent-2);
+}
+
+.text-accent-3 {
+	color: var(--color-accent-3);
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	overflow: hidden;
+	clip: rect(0 0 0 0);
+	white-space: nowrap;
+}
