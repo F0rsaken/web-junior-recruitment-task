@@ -10,8 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "ofetch": "^1.5.1",
     "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.2"
   },
   "devDependencies": {
     "@babel/core": "^7.29.7",
@@ -22,7 +24,8 @@
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
     "babel-plugin-react-compiler": "^1.0.0",
-    "oxlint": "^1.75.0",
+    "oxfmt": "^0.59.0",
+    "sass-embedded": "^1.100.0",
     "typescript": "~6.0.2",
     "vite": "^8.2.0"
   }
