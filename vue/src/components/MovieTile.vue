@@ -6,7 +6,13 @@
  * - producer's name
  * - release date
  * - list of characters with links to characters site
+ *
+ * Implement function that returns character id from character url
  */
+
+const extractCharacterId = (url: string) => {
+	return 0;
+};
 </script>
 
 <template>

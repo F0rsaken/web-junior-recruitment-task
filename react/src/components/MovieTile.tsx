@@ -7,8 +7,15 @@ import { Link } from "react-router-dom";
  * - producer's name
  * - release date
  * - list of characters with links to characters site
+ *
+ * Implement function that returns character id from character url
  */
 function MovieTile() {
+	// TODO implement
+	const extractCharacterId = (url: string) => {
+		return 0
+	};
+
 	return (
 		<div className="movie-tile">
 			<div className="movie-tile__body">
