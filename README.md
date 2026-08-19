@@ -12,17 +12,11 @@ Celem tego zadania jest stworzenie prostej aplikacji webowej wyświetlającej li
 	- rok wydania
 	- lista postaci w tym filmie
 - lista postaci w filmie jest listą linków do stron postaci
-- strona postaci zawiera:
-	- imię + nazwisko
-	- wzrost
-	- waga
-	- rok urodzenia
-	- płeć
-	- nazwę planety pochodzenia
-- waga postaci ma być wyświetlona jako opis + waga w kg, tj.:
+
+<!--- waga postaci ma być wyświetlona jako opis + waga w kg, tj.:
 	- < 40kg - __super light__
 	- < 80kg - __light__
 	- < 100kg - __medium__
 	- <= 200kg - __heavy__
 	- \> 200kg - __super heavy__
-	- jeżeli waga jest nieznana, to wyświetlamy wartość pola
+	- jeżeli waga jest nieznana, to wyświetlamy wartość pola-->
